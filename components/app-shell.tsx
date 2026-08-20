@@ -45,7 +45,7 @@ export function AppShell({
             <Package className="size-4" />
           </div>
           <span className="font-serif text-base font-semibold tracking-tight">
-            INOMAX
+            INOMAX123
           </span>
         </div>
 
