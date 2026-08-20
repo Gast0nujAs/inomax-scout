@@ -1,25 +1,27 @@
 export type ProductStatus =
   | 'Pendiente'
   | 'En revisión'
+  | 'Sugerencia de Compra'
   | 'Aprobado'
   | 'Descartado'
 
 export const PRODUCT_STATUSES: ProductStatus[] = [
   'Pendiente',
   'En revisión',
+  'Sugerencia de Compra',
   'Aprobado',
   'Descartado',
 ]
 
 export const PRODUCT_CATEGORIES = [
-  'Hogar, Muebles y Jardin',
-  'Electrónica',
+  'Muebles y Jardin',
+  'Construcción',
   'Herramientas',
-  'Deportes',
-  'Juguetería',
-  'Salud y Belleza',
-  'Automotor',
-  'Oficina',
+  'Industrias y Oficinas',
+  'Arte, Libreria y Merceria',
+  'Accesorios para Vehiculos',
+  'Deportes y Fitness',
+  'Ropa y Accesorios',
   'Otros',
 ] as const
 
@@ -50,6 +52,8 @@ export const STATUS_STYLES: Record<ProductStatus, string> = {
     'bg-emerald-100 text-emerald-800 border-emerald-200 dark:bg-emerald-950 dark:text-emerald-200',
   Descartado:
     'bg-rose-100 text-rose-800 border-rose-200 dark:bg-rose-950 dark:text-rose-200',
+  'Sugerencia de Compra':
+    'bg-sky-100 text-sky-800 border-sky-200 dark:bg-sky-950 dark:text-sky-200',
 }
 
 export function formatPrice(price: number | null): string {
