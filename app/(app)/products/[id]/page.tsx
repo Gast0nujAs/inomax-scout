@@ -139,10 +139,7 @@ export default async function ProductDetailPage({
                 </span>
               </Row>
               <Separator />
-              <Row label="Código MLA">
-                <span className="tabular-nums">{product.mla ?? '—'}</span>
-              </Row>
-              <Separator />
+              
               <Row label="Creado">
                 <span>{formatDate(product.created_at)}</span>
               </Row>

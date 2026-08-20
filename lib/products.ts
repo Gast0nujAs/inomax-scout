@@ -12,7 +12,7 @@ export const PRODUCT_STATUSES: ProductStatus[] = [
 ]
 
 export const PRODUCT_CATEGORIES = [
-  'Hogar',
+  'Hogar, Muebles y Jardin',
   'Electrónica',
   'Herramientas',
   'Deportes',

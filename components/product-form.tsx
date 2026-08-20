@@ -206,15 +206,7 @@ export function ProductForm({
             <CardTitle className="font-serif text-lg">MercadoLibre</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="mla">Código MLA</Label>
-              <Input
-                id="mla"
-                name="mla"
-                defaultValue={product?.mla ?? ''}
-                placeholder="MLA123456789"
-              />
-            </div>
+            
             <div className="space-y-2">
               <Label htmlFor="mercadolibre_url">URL de publicación</Label>
               <Input
