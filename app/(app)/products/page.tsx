@@ -6,6 +6,7 @@ import { PageHeader } from '@/components/page-header'
 import { NewProductButton } from '@/components/app-shell'
 import { ProductFilters } from '@/components/product-filters'
 import { StatusBadge } from '@/components/status-badge'
+import { ProductDecision } from '@/components/product-decision'
 import { Card } from '@/components/ui/card'
 import {
   Table,
@@ -15,7 +16,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { formatPrice, formatDate, type Product } from '@/lib/products'
+import { formatPrice, type Product } from '@/lib/products'
 
 export const dynamic = 'force-dynamic'
 
@@ -77,7 +78,7 @@ export default async function ProductsPage({
                     <TableHead>Categoría</TableHead>
                     <TableHead>Estado</TableHead>
                     <TableHead className="text-right">Precio</TableHead>
-                    <TableHead className="text-right">Creado</TableHead>
+                    <TableHead className="text-right">Decisión</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -113,8 +114,11 @@ export default async function ProductsPage({
                       <TableCell className="text-right tabular-nums">
                         {formatPrice(product.price)}
                       </TableCell>
-                      <TableCell className="text-right text-muted-foreground">
-                        {formatDate(product.created_at)}
+                      <TableCell>
+                        <ProductDecision
+                          id={product.id}
+                          status={product.status}
+                        />
                       </TableCell>
                     </TableRow>
                   ))}
@@ -125,8 +129,11 @@ export default async function ProductsPage({
             {/* Mobile cards */}
             <div className="grid gap-3 md:hidden">
               {products.map((product) => (
-                <Link key={product.id} href={`/products/${product.id}`}>
-                  <Card className="flex flex-row items-center gap-3 p-3">
+                <Card key={product.id} className="flex flex-col gap-3 p-3">
+                  <Link
+                    href={`/products/${product.id}`}
+                    className="flex flex-row items-center gap-3"
+                  >
                     <Thumb src={product.images[0]} alt={product.name} />
                     <div className="min-w-0 flex-1">
                       <p className="truncate font-medium">{product.name}</p>
@@ -140,8 +147,13 @@ export default async function ProductsPage({
                         {formatPrice(product.price)}
                       </span>
                     </div>
-                  </Card>
-                </Link>
+                  </Link>
+                  <ProductDecision
+                    id={product.id}
+                    status={product.status}
+                    className="justify-stretch [&>button]:flex-1"
+                  />
+                </Card>
               ))}
             </div>
           </>

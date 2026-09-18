@@ -112,6 +112,35 @@ export async function updateProduct(
   redirect(`/products/${id}`)
 }
 
+export async function setProductStatus(
+  id: string,
+  status: ProductStatus,
+): Promise<ProductActionState & { success?: boolean }> {
+  const supabase = await createClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  if (!user) return { error: 'Sesión expirada. Volvé a iniciar sesión.' }
+  if (!PRODUCT_STATUSES.includes(status))
+    return { error: 'Estado inválido.' }
+
+  const { error } = await supabase
+    .from('products')
+    .update({ status })
+    .eq('id', id)
+
+  if (error) {
+    console.log('[v0] setProductStatus error:', error.message)
+    return { error: 'No se pudo actualizar el estado.' }
+  }
+
+  revalidatePath('/products')
+  revalidatePath(`/products/${id}`)
+  revalidatePath('/dashboard')
+  return { success: true }
+}
+
 export async function deleteProduct(id: string): Promise<void> {
   const supabase = await createClient()
   const {
