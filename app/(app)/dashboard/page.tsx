@@ -41,7 +41,7 @@ export default async function DashboardPage() {
       tint: 'bg-primary/10 text-primary',
     },
     {
-      label: 'En revisión',
+      label: 'En revisión (DUDOSO)',
       value: counts['En revisión'] ?? 0,
       icon: Clock,
       tint: 'bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300',
