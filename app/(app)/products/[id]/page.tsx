@@ -1,11 +1,11 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, Pencil, ExternalLink, ImageOff } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
 import { PageHeader } from '@/components/page-header'
 import { StatusBadge } from '@/components/status-badge'
 import { DeleteProductButton } from '@/components/delete-product-button'
+import { ProductGallery } from '@/components/product-gallery'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
@@ -64,22 +64,7 @@ export default async function ProductDetailPage({
                   <p className="text-sm">Sin imágenes</p>
                 </div>
               ) : (
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-                  {product.images.map((url) => (
-                    <div
-                      key={url}
-                      className="relative aspect-square overflow-hidden rounded-lg border border-border bg-muted"
-                    >
-                      <Image
-                        src={url || '/placeholder.svg'}
-                        alt={product.name}
-                        fill
-                        sizes="(max-width: 640px) 50vw, 200px"
-                        className="object-cover"
-                      />
-                    </div>
-                  ))}
-                </div>
+                <ProductGallery images={product.images} name={product.name} />
               )}
             </CardContent>
           </Card>
